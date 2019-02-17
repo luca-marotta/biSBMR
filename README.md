@@ -45,12 +45,12 @@ The file example.R is just a very minimalistic guide to the use of the function 
 The following steps to make the wrapper work on Windows were tested on Windows 7 / Windows 10 with R 3.3 and Rtools >= 3.3
 
 1. Ensure you installed the R package Rcpp.
-2. Install Rtools 33 from https://cran.r-project.org/bin/windows/Rtools (latest version tested: Rtools34)
+2. Install Rtools from https://cran.r-project.org/bin/windows/Rtools (latest version tested: Rtools34)
    1. Allow the installer to edit your PATH. 
    2. Manually Add R to your PATH (see below for details). 
 3. Give the file biSBM.bat read and execute permissions (right-click on it, select properties, and edit permissions in the security tab).
 4. Run the example script example_R.R to compile the shared library. Make sure to comment the first source command 
-##### About Windiws PATH
+##### About Windows PATH
 
 Usually your R installation on Windows is located in the path C:\Program Files\R\R-vers-num\bin, where vers-num is your R release number. In order to call R from MS-DOS you will have to add this path to your system's PATH environment variable. 
 To do this, go to Control Panel --> System --> Change Settings and select the Advanced tab. 

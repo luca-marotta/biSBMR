@@ -1,9 +1,10 @@
 ##### example for biSBM.R #####
-source("biSBM.R"); ### loading and compiling biSBM function
+### loading and compiling biSBM function
 
-######## On Windows, please comment the line above and read carefully the file biSBMWin.R
-######## Then run next line
-source("biSBMWin.R");
+if(Sys.info()["sysname"]=="Windows") {
+  source("biSBMWin.R") } else {
+  source("biSBM.R")
+  }
 
 ##### TEST 1 - Southern Women #####
 edges <- read.table("southernWomen.edgelist");  ## edgelist
