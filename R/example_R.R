@@ -3,7 +3,7 @@
 
 if(Sys.info()["sysname"]=="Windows") {
   source("biSBMWin.R") } else {
-  source("biSBM.R")
+    source("biSBM.R")
   }
 
 ##### TEST 1 - Southern Women #####
@@ -28,7 +28,7 @@ g <- biSBM(data = edges, nodeType = types, ka = 2, kb = 3, deg.corr = 1, iter = 
 # Final Score: -367.658
 
 ##### TEST 2 - Difficult Case (from paper) #####
-edges <- read.table("test.edgelist");  ## edgelist
+edges <- read.table("test.edgeList");  ## edgelist
 edges = edges[,1:2]; ## get rid of the edge weights (which are all 1).
 types <- read.table("test.types");     ## nodeType
 g <- biSBM(data = edges, nodeType = types, ka = 2, kb = 3, deg.corr = 1, iter = 3);
