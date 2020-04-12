@@ -21,8 +21,8 @@
 // You can download that code at http://www-personal.umich.edu/~mejn/dcbm/
 //
 
-#include <Rcpp.h> 
-#include <R.h> 
+#include <Rcpp.h>
+#include <R.h>
 #include <cstdio>
 #include <stdlib.h>
 #include <stdio.h>
@@ -42,9 +42,9 @@
 using namespace std;
 
 /********** biSBM **********/
-extern "C" 
-{ 
-  void rFunction(double* el, int* Nel, double* nodes, int* Nnodes, int *nA, int *nB, int *dc, int *iter, int* g)
+extern "C"
+{
+  void rFunction(double* el, int* Nel, double* nodes, int* Nnodes, int *nA, int *nB, int *dc, int *iter, int* g, double* MLScore)
   {
     //srandom(time(NULL));
     srand(time(NULL));
@@ -62,14 +62,14 @@ extern "C"
     double *e;
      Types.clear();
      Comms.clear();
-    
+
     /**********  0 edgelist  **********/
      size_t mrows =(long int) *Nel;
      e = el;
-    
+
      GetTheNetworkEdges(e,mrows);
-    
-    
+
+
     /**********  1 types  **********/
     //     types = mxGetPr(prhs[1]);
     //     Nodes = mxGetM(prhs[1]); // GLOBAL - Number of nodes
@@ -114,7 +114,7 @@ extern "C"
     Comms.push_back(commlist);
     commlist.clear();
     MaxComms = counter;
-    
+
     Rcpp::Rcout<<"\nCalling biSBM with the following parameters.\n";
     Rcpp::Rcout<<"KA:\t"<<KA<<std::endl;
     Rcpp::Rcout<<"KB:\t"<<KB<<std::endl;
@@ -135,17 +135,20 @@ extern "C"
     Rcpp::Rcout<<"DegreeCorrect:\t"<<isDegreeCorrect<<std::endl;
     Rcpp::Rcout<<"Edges:\t"<<mrows<<std::endl;
     //mexEvalString("drawnow;");
-    
+
     /**********  Call the biSBM subroutine.  **********/
     biSBM();
-    
+
     /**********  Put the output into g.  **********/
     for (unsigned int i=0; i<Nodes; ++i)
     {
       g[i] = BestState[i];
-      
+
     }
-    
+
+    /********** Save final likelihood score ***************/
+    MLScore[0] = MaxScore;
+
    }
-  
-} 
+
+}

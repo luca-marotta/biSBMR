@@ -158,7 +158,7 @@ void biSBM()
   {
     BestState[i] = SavedState[i];
   }
-  Rcpp::Rcout << "Final Score: " << ComputeInitialScore() << endl;
+  Rcpp::Rcout<<"Final Score: "<<ComputeInitialScore()<<endl;
 
   freegraph();
 }
